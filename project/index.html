@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto</title>
+    <link rel="icon" href="/assets/favicon.png">
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/mediaqueries.css" />
+    <script type="module" src="/assets/js/project.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+    <style>
+        ul, ol {
+            margin-left: 20px;
+            padding-left: 20px;
+        }
+        ul li {list-style-type: disc;}
+        ol li {list-style-type: decimal;}
+        img {
+            max-width: 400px;
+            
+        }
+        .loading {text-align: center;}
+    </style>
+</head>
+<body>
+    <section>
+        <div class="project__header">
+            <a href="/" class="project__btn-back">Volver atrás</a>
+            <a href="/" class="project__header-logo">Michael Vargas</a>
+        </div>
+        <div class="loading" id="loading">
+            <img src="/assets/images/loading.gif" width="50">
+        </div>
+        <textarea class="container-markdown" id="markdown-input" style="display:none;"></textarea>
+        <div id="html-output"></div>
+    </section>
+    <footer style="margin-top: 40px;">
+        <p>Copyright &#169; 2024 Michael Vargas. Todos los derechos reservados.</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+        try {
+            setTimeout(() => {
+                const markdownInput = document.getElementById('markdown-input');
+            const htmlOutput = document.getElementById('html-output');
+            const markdownText = markdownInput.value;
+            const html = marked.parse(markdownText);
+            htmlOutput.innerHTML = html;
+            }, 500)
+        } catch (error) {
+            console.error("Error al convertir Markdown a HTML:", error);
+        }
+        });
+    </script>
+    <script src="/script.js"></script>
+</body>
+</html>
